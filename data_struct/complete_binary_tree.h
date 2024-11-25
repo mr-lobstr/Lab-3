@@ -54,7 +54,7 @@ namespace data_struct
             }
         }
 
-        CompleteBinTree& operator= (CompleteBinTree&& rhs) noexcept {
+        Self& operator= (Self&& rhs) noexcept {
             if (this != &rhs) {
                 auto tmp = std::move (rhs);
                 swap (tmp);
@@ -62,12 +62,22 @@ namespace data_struct
             return *this;
         }
 
-        CompleteBinTree& operator= (CompleteBinTree const& rhs) {
+        Self& operator= (Self const& rhs) {
             if (this != &rhs) {
                 auto tmp = rhs;
                 swap (tmp);
             }
             return *this;
+        }
+
+        friend
+        bool operator== (Self const& lhs, Self const& rhs) noexcept {
+            return algs::equal (lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+        }
+
+        friend
+        bool operator!= (Self const& lhs, Self const& rhs) noexcept {
+            return not (lhs == rhs);
         }
 
         bool empty() const noexcept {

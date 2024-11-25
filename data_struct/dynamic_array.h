@@ -77,6 +77,17 @@ namespace data_struct
             mem_free (begin_);
         }
 
+
+        friend
+        bool operator== (DynamicArray const& lhs, DynamicArray const& rhs) noexcept {
+            return algs::equal (lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+        }
+
+        friend
+        bool operator!= (DynamicArray const& lhs, DynamicArray const& rhs) noexcept {
+            return not (lhs == rhs);
+        }
+
         auto begin() noexcept {
             return iterator {begin_};
         }
